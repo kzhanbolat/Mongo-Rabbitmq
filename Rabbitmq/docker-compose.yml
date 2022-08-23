@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  rab1:
+    container_name: rabbit-1
+    hostname: rab1
+    image: rabbitmq:3.9-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=cluster_cookie
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+
+  rab2:
+     container_name: rabbit-2
+     hostname: rab2
+     links:
+       - rab1
+     image: rabbitmq:3.9-management
+     ports:
+       - 5673:5672
+       - 15673:15672
+     environment:
+       - RABBITMQ_ERLANG_COOKIE=cluster_cookie
+       - RABBITMQ_DEFAULT_USER=admin
+       - RABBITMQ_DEFAULT_PASS=admin
+  docker run -d --rm --name local-vps-23 -p 23:23 atlekbai/local-vps 23
+
+  [ hello ]
+  127.0.0.1 ansible_user=root ansible_port=23

@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  m1:
+    image: mongo:5.0.7
+    ports:
+      - '27017:27017'
+  #  networks:
+  #    - monogoNet
+    volumes:
+      - ./mongo-dump:/users/owner/documents/mongodb/data/reservations
+   # command: sh -c "mongorestore --port 27017 --db reservations /home/box/reservations/"
+  m2:
+    image: mongo:5.0.7
+    ports:
+      - '27018:27017'
+   # networks:
+    #  - monogoNet
+  m3:
+    image: mongo:5.0.7
+    ports:
+      - '27019:27017'
+   # networks:
+    #  - monogoNet

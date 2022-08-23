@@ -1,0 +1,16 @@
+go to sudo odcker exec -it rab2 bash
+
+rabbitmqctl stop_app
+
+rabbitmqctl join_cluster rabbit@rabbit1
+
+rabbitmqctl start_app
+
+
+2nd way
+
+sudo docker exec -it 972c7dcb995b bash -c "rabbitmqctl stop_app"
+sudo docker exec -it 972c7dcb995b bash -c "rabbitmqctl join_cluster rabbit@rab1"
+sudo docker exec -it 972c7dcb995b bash -c "rabbitmqctl start_app"
+
+
